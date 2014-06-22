@@ -22,20 +22,20 @@ import com.spiritflightapps.newberg.data.StockRow;
 public class LazyListAdapter extends BaseAdapter implements ICallBack{
 
     private String[] bergTests = {
-            "1.SITTING TO STANDING",
-            "2.STANDING UNSUPPORTED",
-            "3.SIT W/BACK UNSUPPORTED\n FEET SUP",
-            "4.STANDING TO SITTING",
-            "5.TRANSFERS",
-            "6.STAND UNSUPPORTED\n W/EYES CLOSED",
-            "7.STAND UNSUPPORTED\n W/FEET TOGETHER",
-            "8.STAND-REACH\n FORWARD W/ARM",
-            "9.STAND-PICKUP OBJECT\n FROM FLOOR",
-            "10.STAND-LOOK BEHIND\n SHOULDERS",
-            "11.TURN 360 DEGREES",
-            "12.PLACE ALT. FOOT ON\n STEP WHILE UNSUPPORTED",
-            "13.STANDING UNSUPPORTED\n ONE FOOT IN FRONT",
-            "14.STANDING ON ONE LEG"};
+            "1. SITTING TO STANDING",
+            "2. STANDING UNSUPPORTED",
+            "3. SIT WITH BACK\n UNSUPPORTED AND\n FEET SUPPORTED",
+            "4. STANDING TO SITTING",
+            "5. TRANSFERS",
+            "6. STAND UNSUPPORTED\n WITH EYES CLOSED",
+            "7. STAND UNSUPPORTED\n  WITH FEET TOGETHER",
+            "8. STAND-REACH\n FORWARD WITH ARM",
+            "9. STAND-PICKUP OBJECT\n FROM FLOOR",
+            "10. STAND-LOOK BEHIND\n SHOULDERS",
+            "11. TURN 360 DEGREES",
+            "12. PLACE ALTERNATING\n FOOT ON STEP WHILE\n UNSUPPORTED",
+            "13. STAND UNSUPPORTED\n ONE FOOT IN FRONT OF\n THE OTHER",
+            "14. STANDING ON ONE LEG"};
 
     private Context context;
     private static LayoutInflater inflater=null;
