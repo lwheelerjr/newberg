@@ -167,10 +167,17 @@ public class TestListAdapter extends BaseAdapter{
     }
 
     public void deleteTest() {
-        String name = patient.getBergTests().get(currentTestIndex).getName();
-        patient.getBergTests().remove(currentTestIndex);
-        notifyDataSetChanged();
-        Toast.makeText(context, "Test '" + name + "' deleted.", Toast.LENGTH_LONG).show();
+        if(patient.getBergTests().size() > 1) {
+            String name = patient.getBergTests().get(currentTestIndex).getName();
+            patient.getBergTests().remove(currentTestIndex);
+            if(currentTestIndex > patient.getBergTests().size() - 1 ) {
+                --currentTestIndex;
+            }
+            notifyDataSetChanged();
+            Toast.makeText(context, "Test '" + name + "' deleted.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "Patient must have at least one test.", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void saveTests() {

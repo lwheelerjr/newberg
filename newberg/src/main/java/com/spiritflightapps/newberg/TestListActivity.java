@@ -47,7 +47,6 @@ public class TestListActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        EditText testNameField = (EditText) findViewById(R.id.testName);
         switch(item.getItemId()){
             case R.id.action_new:
                 adapter.addTest(new BergDateUtility().getNow());
@@ -55,15 +54,14 @@ public class TestListActivity extends Activity {
 
             case R.id.action_next:
                 adapter.goToNextTest();
-                testNameField.setText(adapter.getCurrentTestName());
                 return true;
 
             case R.id.action_previous:
                 adapter.goToPreviousTest();
-                testNameField.setText(adapter.getCurrentTestName());
                 return true;
 
             case R.id.action_remove:
+                adapter.deleteTest();
                 return true;
         }
         return super.onContextItemSelected(item);
