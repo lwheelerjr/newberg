@@ -16,6 +16,7 @@ android:orientation="vertical">
         android:layout_alignParentLeft="true"
         android:hint="Patient Name..."
         android:inputType="textVisiblePassword"
+        android:editable="false"
         android:imeOptions="actionDone"/>
 
     <EditText android:id="@+id/testName"

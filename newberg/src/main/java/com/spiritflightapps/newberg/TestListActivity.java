@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 
@@ -26,6 +27,13 @@ public class TestListActivity extends Activity {
         list = (ListView)findViewById(R.id.list);
 
         adapter = new TestListAdapter(this, Long.parseLong(patientId));
+
+        EditText patientNameField = (EditText) findViewById(R.id.patientName);
+        patientNameField.setKeyListener(null); // make non editable
+        EditText testNameField = (EditText) findViewById(R.id.testName);
+
+        patientNameField.setText(adapter.getPatientName());
+        testNameField.setText(adapter.getCurrentTestName());
 
         list.setAdapter(adapter);
     }

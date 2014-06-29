@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
@@ -56,7 +57,7 @@ public class TestListAdapter extends BaseAdapter{
         return position;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         View vi;
 
 
@@ -73,8 +74,32 @@ public class TestListAdapter extends BaseAdapter{
                     R.array.score_array, R.layout.spinner_layout);
             adapter.setDropDownViewResource(R.layout.spinner_layout);
             spinner.setAdapter(adapter);
+            spinner.setSelection(patient.getBergTests().get(currentTestIndex).getScores()[position] - 1 , false);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int pos, long id) {
+                    System.out.println("Called pos: " + pos + " id: " + id);
+                    patient.getBergTests().get(currentTestIndex).getScores()[position] = new Integer(pos +1);
+                    notifyDataSetChanged();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    return;
+                }
+
+            });
+
+
         } else {
             vi = inflater.inflate(R.layout.test_total_row, null);
+
+            int sum = 0;
+            for(Integer score : patient.getBergTests().get(currentTestIndex).getScores()) {
+                sum += score;
+            }
+            TextView totalField = (TextView) vi.findViewById(R.id.total_score);
+            totalField.setText(String.valueOf(sum));
         }
 
         return vi;
@@ -102,5 +127,12 @@ public class TestListAdapter extends BaseAdapter{
     }
 
 
+    public String getPatientName() {
+        return patient.getName();
+    }
+
+    public String getCurrentTestName() {
+        return patient.getBergTests().get(currentTestIndex).getName();
+    }
 
 }

@@ -39,14 +39,14 @@ public class BergJSONUtility {
         } catch (JSONException je) {
             je.printStackTrace();
         }
-
+        System.out.println("To JSON: " + json);
         return json;
     }
 
 
     public BergTest[] fromJSON(String json) {
         ArrayList<BergTest> bergTests = new ArrayList();
-
+        System.out.println("From JSON: " + json);
         try {
             JSONObject obj = (JSONObject) new JSONTokener(json).nextValue();
             JSONArray testArray = (JSONArray) obj.get("bergTests");
