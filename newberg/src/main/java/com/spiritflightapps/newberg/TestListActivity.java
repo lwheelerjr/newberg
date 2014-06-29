@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.spiritflightapps.newberg.util.BergDateUtility;
 
 
 public class TestListActivity extends Activity {
@@ -21,21 +22,18 @@ public class TestListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tests);
 
+        EditText testNameField = (EditText) findViewById(R.id.testName);
+        EditText patientNameField = (EditText) findViewById(R.id.patientName);
+        patientNameField.setKeyListener(null); // make patient name non-editable
+
         Intent intent = getIntent();
         String patientId = intent.getStringExtra("patientId");
 
+        adapter = new TestListAdapter(this, testNameField, Long.parseLong(patientId));
         list = (ListView)findViewById(R.id.list);
-
-        adapter = new TestListAdapter(this, Long.parseLong(patientId));
-
-        EditText patientNameField = (EditText) findViewById(R.id.patientName);
-        patientNameField.setKeyListener(null); // make non editable
-        EditText testNameField = (EditText) findViewById(R.id.testName);
+        list.setAdapter(adapter);
 
         patientNameField.setText(adapter.getPatientName());
-        testNameField.setText(adapter.getCurrentTestName());
-
-        list.setAdapter(adapter);
     }
 
 
@@ -49,11 +47,23 @@ public class TestListActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        EditText testNameField = (EditText) findViewById(R.id.testName);
         switch(item.getItemId()){
             case R.id.action_new:
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-                int position = (int) info.id;
-                adapter.addTest("New Test");
+                adapter.addTest(new BergDateUtility().getNow());
+                return true;
+
+            case R.id.action_next:
+                adapter.goToNextTest();
+                testNameField.setText(adapter.getCurrentTestName());
+                return true;
+
+            case R.id.action_previous:
+                adapter.goToPreviousTest();
+                testNameField.setText(adapter.getCurrentTestName());
+                return true;
+
+            case R.id.action_remove:
                 return true;
         }
         return super.onContextItemSelected(item);

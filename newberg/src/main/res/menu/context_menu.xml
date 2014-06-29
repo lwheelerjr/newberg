@@ -4,9 +4,6 @@
     android:layout_height="10dp"
     android:layout_width="10dp">
     <item
-        android:id="@+id/cancel_item"
-        android:title="Cancel"/>
-    <item
         android:id="@+id/delete_item"
-        android:title="Delete"/>
+        android:title="Delete Patient"/>
 </menu>

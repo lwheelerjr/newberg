@@ -15,7 +15,7 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:hint="Patient Name..."
-        android:inputType="textVisiblePassword"
+        android:inputType="textCapWords"
         android:editable="false"
         android:imeOptions="actionDone"/>
 
@@ -24,8 +24,8 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/patientName"
         android:layout_alignParentRight="true"
-        android:hint="Test Name..."
-        android:inputType="textVisiblePassword"
+        android:hint="New Test Name..."
+        android:inputType="textCapWords"
         android:imeOptions="actionDone"/>
 
     </RelativeLayout>

@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.spiritflightapps.newberg.data.DatabaseHandler;
+import com.spiritflightapps.newberg.util.BergDateUtility;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class PatientListAdapter extends BaseAdapter{
@@ -62,7 +62,8 @@ public class PatientListAdapter extends BaseAdapter{
         Patient patient = new Patient();
         patient.setName(name);
         patient.setBergTests(new ArrayList<BergTest>());
-        patient.getBergTests().add(new BergTest("untitled", tests));
+        patient.getBergTests().add(new BergTest(new BergDateUtility().getNow(), tests));
+
         db.addPatient(patient);
         readData();
         notifyDataSetChanged();

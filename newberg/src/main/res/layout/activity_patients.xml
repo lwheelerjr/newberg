@@ -10,7 +10,7 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:hint="New Patient Name..."
-        android:inputType="textVisiblePassword"
+        android:inputType="textCapWords"
         android:imeOptions="actionDone"/>
 
     <ListView

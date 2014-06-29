@@ -16,7 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginRight="5dip"
         android:layout_centerInParent="true"
-        android:src="@drawable/stay"/>
+        android:src="@drawable/ic_green_info"/>
 
     <!-- Patient Symbol-->
     <TextView
@@ -42,8 +42,7 @@
         android:typeface="sans"
         android:textSize="26dip"
         android:textStyle="bold"
-
-        android:text="22" />
+        android:text="" />
 
 
     <TextView
@@ -56,7 +55,7 @@
         android:layout_alignLeft="@+id/total_score"
         android:gravity="left"
         android:paddingTop="5dip"
-        android:text="18" />
+        android:text="" />
 
     <TextView
         android:id="@+id/total_next_score"
@@ -68,6 +67,6 @@
         android:layout_alignRight="@+id/total_score"
         android:paddingTop="5dip"
         android:gravity="right"
-        android:text="30" />
+        android:text="" />
 
 </RelativeLayout>
