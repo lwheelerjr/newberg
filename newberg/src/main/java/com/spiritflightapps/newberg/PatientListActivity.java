@@ -1,10 +1,10 @@
 package com.spiritflightapps.newberg;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,11 +15,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CustomizedListView extends Activity {
+public class PatientListActivity extends Activity {
 
-    EditText inputNewStock;
+    EditText addNewPatient;
     ListView list;
-    LazyListAdapter adapter;
+    PatientListAdapter adapter;
 
 
     @Override
@@ -29,31 +29,34 @@ public class CustomizedListView extends Activity {
 
         list = (ListView)findViewById(R.id.list);
 
-        adapter = new LazyListAdapter(this, list);
+        adapter = new PatientListAdapter(this);
         adapter.readData();
 
         list.setAdapter(adapter);
+
+        final Intent myIntent=new Intent(this, TestListActivity.class);
 
         // Click event for single gridView row
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // TODO: GOTO STOCK DETAILS ACTIVITY
+                myIntent.putExtra("patientId", String.valueOf(adapter.patientAt(position)));
+                startActivity(myIntent);
             }
         });
 
         list.requestFocus();
 
-        inputNewStock = (EditText) findViewById(R.id.addStockSymbol);
-        inputNewStock.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        addNewPatient = (EditText) findViewById(R.id.patientName);
+        addNewPatient.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(final TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    EditText inputNewStock = (EditText) findViewById(R.id.addStockSymbol);
-                    adapter.addNewStock(inputNewStock.getText().toString().toUpperCase());
-                    inputNewStock.setText("");
+                    EditText textField = (EditText) findViewById(R.id.patientName);
+                    adapter.addPatient(textField.getText().toString());
+                    textField.setText("");
                     handled = true;
                 }
                 return handled;
@@ -63,20 +66,11 @@ public class CustomizedListView extends Activity {
         registerForContextMenu(list);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu items for use in the action bar
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.list_activity_actions, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater =getMenuInflater();
+        MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
     }
 
@@ -86,17 +80,10 @@ public class CustomizedListView extends Activity {
             case R.id.delete_item:
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 int position = (int) info.id;
-                adapter.deleteStock(position);
+                adapter.deletePatient(position);
                 return true;
         }
         return super.onContextItemSelected(item);
     }
-
-    protected void onPause() {
-        super.onPause();
-        adapter.saveData();
-    }
-
-
 
 }

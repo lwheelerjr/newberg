@@ -4,14 +4,31 @@ android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical">
 
-
-    <EditText android:id="@+id/patientName"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+    <EditText android:id="@+id/patientName"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:hint="New Patient Name..."
+        android:hint="Patient Name..."
         android:inputType="textVisiblePassword"
         android:imeOptions="actionDone"/>
+
+    <EditText android:id="@+id/testName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/patientName"
+        android:layout_alignParentRight="true"
+        android:hint="Test Name..."
+        android:inputType="textVisiblePassword"
+        android:imeOptions="actionDone"/>
+
+    </RelativeLayout>
+
 
     <ListView
         android:id="@+id/list"

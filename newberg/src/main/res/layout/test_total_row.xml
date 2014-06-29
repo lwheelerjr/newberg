@@ -8,7 +8,7 @@
 
     <!--  ListRow Left side tip image -->
     <ImageView
-        android:id="@+id/tipview"
+        android:id="@+id/infoview"
         android:visibility="invisible"
         android:layout_width="30dip"
         android:layout_height="30dip"
@@ -18,13 +18,13 @@
         android:layout_centerInParent="true"
         android:src="@drawable/stay"/>
 
-    <!-- Stock Symbol-->
+    <!-- Patient Symbol-->
     <TextView
-        android:id="@+id/stocksymbol"
+        android:id="@+id/testname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_toRightOf="@+id/tipview"
+        android:layout_toRightOf="@+id/infoview"
         android:text="TOTAL"
         android:textColor="#040404"
         android:typeface="sans"
